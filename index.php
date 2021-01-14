@@ -1,3 +1,11 @@
+<?php 
+
+  require_once('config/koneksi.php');
+  require_once('models/database.php');
+
+  $connection = new Database($host, $user, $pass, $database);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,24 +24,35 @@
             <h6 style="float: left;">admin</h6>
         </div>
         <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link hover" href="update.php"> <i class="fa fa-angle-double-up" aria-hidden="true"></i> &nbsp; Update</a>
+        <li class="nav-item">
+              <a class="nav-link hover" href="?page=dashboard"> <i class="fas fa-tachometer-alt" aria-hidden="true"></i> &nbsp; Dashboard</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link hover" href="list.php"><i class="fa fa-list-ul" aria-hidden="true"></i> &nbsp; List</a>
+              <a class="nav-link hover" href="?page=update"> <i class="fa fa-angle-double-up" aria-hidden="true"></i> &nbsp; Update</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link hover" href="genre.php"><i class="fas fa-tv"></i> &nbsp; Genre</a>
+              <a class="nav-link hover" href="?page=list"><i class="fa fa-list-ul" aria-hidden="true"></i> &nbsp; List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link hover" href="?page=genre"><i class="fas fa-tv"></i> &nbsp; Genre</a>
             </li>
         </ul>
       </div>
       
       <!-- Page content -->
-      <div class="main">
-        <div style="margin-top: 30%; color: #FECA57">
-          <center><h1><strong> WELCOME ADMIN</strong></h1></center>
-        </div>
-      </div>
+      <?php 
+
+        if(@$_GET['page'] == 'dashboard' || @$_GET['page'] == ''){
+          include "views/dashboard.php";
+        }else if(@$_GET['page'] == 'update'){
+          include "views/update.php";
+        }else if(@$_GET['page'] == 'list'){
+          include "views/list.php";
+        }else if(@$_GET['page'] == 'genre'){
+          include "views/genre.php";
+        }
+      
+      ?>
 </body>
     <script src="assets/js/bs/bootstrap.min.js"></script>
     <script src="assets/js/fa/all.js"></script>
