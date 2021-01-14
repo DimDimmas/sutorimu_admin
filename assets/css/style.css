@@ -1,0 +1,101 @@
+a{
+    color: #fff;
+}
+a:hover{
+    color: #fff;
+    text-decoration: none;
+}
+body{
+    background-color: #49525a;
+    color: #fff;
+}
+li{
+    margin: 5px 10px;
+}
+.nav-link{
+    color: #fff !important;
+    transition: 0.8s ease;
+    border-radius: 30px;
+    padding: 15px 20px;
+}
+.hover{
+    color:  rgba(255, 255, 255, 0.4) !important;
+}
+.hover:hover{
+    background-color: rgba(255, 255, 255, 0.1);
+    color:  rgba(255, 255, 255, 1) !important
+}
+.active{
+    color: #343A40 !important;
+    background-color: #FECA57;
+}
+.title{
+    /* padding: 0px 10px; */
+    margin-left: 5%;
+    margin-bottom: 20px;
+    width: 90%;
+    height: 50px;
+    /* background-color: #fff; */
+    border-bottom: solid #FECA57 1px;
+}
+
+/* The sidebar menu */
+.sidenav {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 300px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; 
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #343A40;
+    overflow-x: hidden;
+    padding-top: 20px;
+    box-shadow: 1px 5px 25px rgba(0,0,0,0.3);
+    border-right: solid #FECA57 3px;
+}
+.main {
+    margin-left: 300px;
+    height: 100%;
+}
+
+/* main */
+.search{
+    padding: 8px 15px;
+    border: 0;
+    border-radius: 20px;
+    opacity: 0.3;
+    transition: 0.8s ease;
+}
+.search:focus{
+    opacity: 0.6;
+}
+
+.table-content{
+    width: 90%;
+    margin: 5%;
+}
+table{
+    border-radius: 5px;
+    box-shadow: 1px 5px 25px rgba(0,0,0,0.3);
+}
+
+.add-new{
+    background-color: rgb(88, 153, 92);
+    display: inline-block;
+    padding: 7px;
+    font-size: 14px;
+    /* border-radius: 5px; */
+    margin-left: 5%;
+    transition: 0.6s ease;
+}
+.add-new:hover{
+    background-color: rgb(69, 119, 72);
+}
+.edit{
+    border-color: #FECA57;
+    color: #FECA57 !important;
+}
+.delete{
+    border-color: #e7655b;
+    color: #e7655b !important;
+}
