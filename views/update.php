@@ -1,3 +1,7 @@
+`<?php 
+  include "models/m_update.php";
+  $upd = new Update($connection);
+?>
 <!-- Page content -->
 <div class="main">
         <nav class="navbar navbar-expand-lg">          
@@ -29,13 +33,21 @@
               </tr>
             </thead>
             <tbody>
+            <?php 
+              $no = 1;
+              $tampil = $upd->tampil();
+              while($data = $tampil->fetch_object()){
+            ?>
               <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
+                <th scope="row"><?php echo $no++ ?></th>
+                <td><?php echo $data->episode; ?></td>
+                <td><?php echo $data->title_list; ?></td>
                 <td><center><a href="#"><i class="fas fa-pen edit"></i></a></center></td>
                 <td><center><a href="#"><i class="fa fa-trash delete" aria-hidden="true"></i></a></center></td>
               </tr>
+              <?php 
+                }
+              ?>
             </tbody>
           </table>
         </div>

@@ -1,5 +1,5 @@
 <?php 
-    class Update{
+    class Alist{
         private $mysqli;
 
         function __construct($conn)
@@ -9,10 +9,9 @@
 
         public function tampil($id = null){
             $db = $this->mysqli->conn;
-            $sql = "SELECT *FROM tb_update INNER JOIN tb_list
-            on tb_update.title_list = tb_list.title_list";
+            $sql = "SELECT *FROM tb_list";
             if($id != null){
-                $sql - " WHERE id_update = $id";
+                $sql = " WHERE id_list = $id";
             }
 
             $query = $db->query($sql) or die ($db->error);
