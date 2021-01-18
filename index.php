@@ -50,6 +50,8 @@
           include "views/list.php";
         }else if(@$_GET['page'] == 'genre'){
           include "views/genre.php";
+        }else if(@$_GET['page'] == 'addUp'){
+          include "tambah/addup.php";
         }
       
       ?>

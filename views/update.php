@@ -17,7 +17,7 @@
     <br><br>
     <center><h1><strong>Table Update</strong></h1></center>
     <br>
-      <a class="add-new" data-toggle="modal" href="#ModalAdd">
+      <a class="add-new" href="?page=addUp">
         <i class="fa fa-plus-circle" aria-hidden="true"></i> Update New Episode
       </a>
     <div class="table-content">
