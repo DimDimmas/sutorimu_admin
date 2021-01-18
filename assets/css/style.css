@@ -71,7 +71,6 @@ li{
 }
 
 .table-content{
-    width: 90%;
     margin: 5%;
 }
 table{
@@ -98,4 +97,10 @@ table{
 .delete{
     border-color: #e7655b;
     color: #e7655b !important;
+}
+
+.bg-content{
+    background-color: #ffffff18;
+    padding: 15px 20px;
+    border-radius: 10px;
 }
