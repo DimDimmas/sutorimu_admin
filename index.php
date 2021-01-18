@@ -76,7 +76,6 @@
           include "views/genre/edit_genre.php";
         }
       ?>
-      
 </body>
     <script src="assets/js/bs/bootstrap.js"></script>
     <script src="assets/js/fa/all.js"></script>
