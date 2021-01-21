@@ -17,10 +17,10 @@
         <center><h1><strong>Add New Genre</strong></h1></center>
         <br>
         <div class="table-content bg-content">
-        <form>
+        <form action="" method="POST">
             <div class="form-group">
                 <label for="">Title</label>
-                <input type="text" class="form-control" id="" placeholder="New Genre">
+                <input type="text" class="form-control" id="" name="genre" placeholder="New Genre">
             </div>
             <div class="form-group">
                 <label for="">All Genre</label>
@@ -34,7 +34,16 @@
                 <?php } ?>
                 </select>
             </div>
-          <button type="submit" class="btn btn-warning">Submit</button>
+          <input type="submit" value="Submit" class="btn btn-warning" name="tambah">
+          <button type="reset" class="btn btn-danger">Reset</button>
         </form>
+        <?php 
+          if(@$_POST['tambah']){
+            $genre = $connection->conn->real_escape_string($_POST['genre']);
+            $grn->tambah($genre);
+            echo "<script>alert('Data Berhasil Di tambahkan')</script>";
+            
+          }
+        ?>
         </div>
     </div>

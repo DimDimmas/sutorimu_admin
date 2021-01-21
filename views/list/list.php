@@ -48,7 +48,7 @@
                 <td><?php echo $data->title_list; ?></td>
                 <td><?php echo $data->rate; ?></td>
                 <td><?php echo $data->statu; ?></td>
-                <td><?php echo $data->cover_image; ?></td>
+                <td><img src="assets/img/<?php echo $data->cover_image; ?>" width="70px" alt=""></td>
                 <td><?php echo $data->type; ?></td>
                 <td><?php echo $data->total_episode; ?></td>
                 <td><?php echo $data->aired; ?></td>

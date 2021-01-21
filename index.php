@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="assets/css/bs/bootstrap.css">
     <link rel="stylesheet" href="assets/css/fa/all.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+
 </head>
 <body>
     <div class="sidenav">
@@ -81,4 +83,5 @@
     <script src="assets/js/fa/all.js"></script>
     <script src="assets/js/jquery-3.5.1.min.js"></script>
     <script src="assets/js/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 </html>

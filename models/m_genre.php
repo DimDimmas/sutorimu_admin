@@ -17,5 +17,10 @@
             $query = $db->query($sql) or die ($db->error);
             return $query;
         }
+
+        public function tambah($genre){
+            $db = $this->mysqli->conn;
+            $db->query("INSERT INTO tb_genre values('','$genre')") or die($db->error);
+        }
     }
 ?>

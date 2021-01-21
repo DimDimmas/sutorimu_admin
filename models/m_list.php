@@ -17,5 +17,11 @@
             $query = $db->query($sql) or die ($db->error);
             return $query;
         }
+
+        public function tambah($title, $rate, $status, $gambar, $type, $total, $aired, $durasi, $sinopsis, $lgenre){
+            $db = $this->mysqli->conn;
+            $db->query("INSERT INTO tb_list values('','$title','$rate','$status','$gambar','$type','$total','$aired','$durasi','$sinopsis','$lgenre')")
+            or die($db->error);
+        }
     }
 ?>

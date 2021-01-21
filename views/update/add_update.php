@@ -1,6 +1,9 @@
 <?php 
+  include "models/m_list.php";
   include "models/m_update.php";
-  $upd = new Update($connection);
+
+  $tmb = new Update($connection);
+  $upd = new Alist($connection);
 ?>
 <div class="main">
         <nav class="navbar navbar-expand-lg">          
@@ -17,25 +20,35 @@
         <center><h1><strong>Add New Update</strong></h1></center>
         <br>
         <div class="table-content bg-content">
-        <form>
+        <form method="post" action="">
           <div class="form-group">
             <label for="">Title</label>
-            <select class="form-control" id="">
+            <select class="form-control" name="title" id="">
             <option>-- Select --</option>
             <?php 
              $no = 1;
              $tampil = $upd->tampil();
              while($data = $tampil->fetch_object()){
             ?>
-              <option><?php echo $data->title_list; ?></option>
+              <option value="<?php echo $data->title_list; ?>"><?php echo $data->title_list; ?></option>
             <?php } ?>
             </select>
           </div>            
           <div class="form-group">
             <label for="">Episode</label>
-            <input type="text" class="form-control" id="" placeholder="New Episode">
+            <input type="text" class="form-control" name="episode" id="" placeholder="New Episode">
           </div>
-          <button type="submit" class="btn btn-warning">Submit</button>
+          <input type="submit" value="Tambah" name="tambah" class="btn btn-warning">
+          <button type="reset" class="btn btn-danger">Reset</button>
         </form>
+        <?php 
+          if(@$_POST['tambah']){
+            $title = $connection->conn->real_escape_string($_POST['title']);
+            $episode = $connection->conn->real_escape_string($_POST['episode']);
+            $tmb->tambah($title, $episode);
+            echo "<Script>alert('Data Berhasil Di tambahkan')</script>";
+
+          }
+        ?>
         </div>
     </div>

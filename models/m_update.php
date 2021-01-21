@@ -18,5 +18,10 @@
             $query = $db->query($sql) or die ($db->error);
             return $query;
         }
+
+        public function tambah($title, $episode){
+            $db = $this->mysqli->conn;
+            $db->query("INSERT INTO tb_update values('','$title','$episode')") or die($db->error);
+        }
     }
 ?>
