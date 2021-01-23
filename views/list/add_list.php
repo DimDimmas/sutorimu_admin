@@ -82,32 +82,32 @@
           <input type="submit" value="Submit" class="btn btn-warning" name="tambah">
         </form>
         <?php 
-          if(@$_POST['tambah']){
-            $title = $connection->conn->real_escape_string($_POST['title']);
-            $rate = $connection->conn->real_escape_string($_POST['rate']);
-            $status = $connection->conn->real_escape_string($_POST['status']);
+          // if(@$_POST['tambah']){
+          //   $title = $connection->conn->real_escape_string($_POST['title']);
+          //   $rate = $connection->conn->real_escape_string($_POST['rate']);
+          //   $status = $connection->conn->real_escape_string($_POST['status']);
 
-            $extensi = explode(".", $_FILES['gambar']['name']);
-            $gambar = "cvr-".round(microtime(true)).".".end($extensi);
-            $sumber = $_FILES['gambar']['tmp_name'];
-            $upload = move_uploaded_file($sumber, "assets/img/".$gambar);
+          //   $extensi = explode(".", $_FILES['gambar']['name']);
+          //   $gambar = "cvr-".round(microtime(true)).".".end($extensi);
+          //   $sumber = $_FILES['gambar']['tmp_name'];
+          //   $upload = move_uploaded_file($sumber, "assets/img/".$gambar);
 
-            $type = $connection->conn->real_escape_string($_POST['type']);
-            $total = $connection->conn->real_escape_string($_POST['total']);
-            $aired = $connection->conn->real_escape_string($_POST['aired']);
-            $durasi = $connection->conn->real_escape_string($_POST['durasi']);
-            $sinopsis = $connection->conn->real_escape_string($_POST['sinopsis']);
-            $lgenre = $connection->conn->real_escape_string($_POST['lgenre']);
+          //   $type = $connection->conn->real_escape_string($_POST['type']);
+          //   $total = $connection->conn->real_escape_string($_POST['total']);
+          //   $aired = $connection->conn->real_escape_string($_POST['aired']);
+          //   $durasi = $connection->conn->real_escape_string($_POST['durasi']);
+          //   $sinopsis = $connection->conn->real_escape_string($_POST['sinopsis']);
+          //   $lgenre = $connection->conn->real_escape_string($_POST['lgenre']);
 
             
 
-            if($upload){
-              $lst->tambah($title, $rate, $status, $gambar, $type, $total, $aired, $durasi, $sinopsis, $lgenre);
-              echo "<script>alert('Data Berhasil Di tambahkan')</script>";
-            }else{
-              echo "<script>alert('Upload Gambar Gagal')</script>";
-            }
-          }
+          //   if($upload){
+          //     $lst->tambah($title, $rate, $status, $gambar, $type, $total, $aired, $durasi, $sinopsis, $lgenre);
+          //     echo "<script>alert('Data Berhasil Di tambahkan')</script>";
+          //   }else{
+          //     echo "<script>alert('Upload Gambar Gagal')</script>";
+          //   }
+          // }
         ?>
         </div>
     </div>

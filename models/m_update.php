@@ -9,8 +9,7 @@
 
         public function tampil($id = null){
             $db = $this->mysqli->conn;
-            $sql = "SELECT *FROM tb_update INNER JOIN tb_list
-            on tb_update.title_list = tb_list.title_list";
+            $sql = "SELECT *FROM tb_update";
             if($id != null){
                 $sql - " WHERE id_update = $id";
             }

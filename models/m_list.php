@@ -18,10 +18,16 @@
             return $query;
         }
 
-        public function tambah($title, $rate, $status, $gambar, $type, $total, $aired, $durasi, $sinopsis, $lgenre){
+        public function tambah($title, $rate, $status, $gbr_cvr, $type, $total, $aired, $durasi, $sinopsis, $lgenre){
             $db = $this->mysqli->conn;
-            $db->query("INSERT INTO tb_list values('','$title','$rate','$status','$gambar','$type','$total','$aired','$durasi','$sinopsis','$lgenre')")
+            $db->query("INSERT INTO tb_list values('','$title','$rate','$status','$gbr_cvr','$type','$total','$aired','$durasi','$sinopsis','$lgenre')")
             or die($db->error);
         }
+
+        public function edit($sql){
+            $db = $this->mysqli->conn;
+            $db->query($sql) or die($db->error);
+        }
+        
     }
 ?>

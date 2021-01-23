@@ -18,15 +18,17 @@
         <br>
         <div class="table-content bg-content">
         <form>
-            <?php 
-                $tampil = $grn->tampil();
-                $data = $tampil->fetch_object()
-            ?>       
+        <?php 
+        $id = @$_GET['id'];
+        $edit = $grn->edit($id);
+        $data = $edit->fetch_object();
+        ?>
           <div class="form-group">
             <label for="">Title Genre</label>
-            <input type="text" class="form-control" id="" placeholder="New Episode" value="<?php echo $data->title_genre; ?>">
+            <input type="text" class="form-control" id="genre" placeholder="New Episode" value="<?php echo $data->title_genre; ?>">
           </div>
           <button type="submit" class="btn btn-warning">Submit</button>
         </form>
         </div>
     </div>
+    

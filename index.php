@@ -1,5 +1,5 @@
 <?php 
-
+ob_start();
   require_once('config/koneksi.php');
   require_once('models/database.php');
 
@@ -12,9 +12,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Sutorimu</title>
-    <link rel="stylesheet" href="assets/css/bs/bootstrap.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/bs/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/fa/all.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 
 </head>
@@ -59,7 +61,7 @@
         }
 
         else if(@$_GET['page'] == 'list'){
-          include "views/list/list.php";
+          include "views/list.php";
         }
         else if(@$_GET['page'] == 'add_list'){
           include "views/list/add_list.php";
@@ -69,7 +71,7 @@
         }
 
         else if(@$_GET['page'] == 'genre'){
-          include "views/genre/genre.php";
+          include "views/genre.php";
         }
         else if(@$_GET['page'] == 'add_genre'){
           include "views/genre/add_genre.php";
@@ -79,9 +81,11 @@
         }
       ?>
 </body>
-    <script src="assets/js/bs/bootstrap.js"></script>
-    <script src="assets/js/fa/all.js"></script>
+
     <script src="assets/js/jquery-3.5.1.min.js"></script>
+    <script src="assets/js/bs/bootstrap.min.js"></script>
+    <script src="assets/js/fa/all.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <script src="assets/js/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 </html>
