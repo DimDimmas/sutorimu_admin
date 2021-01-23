@@ -23,9 +23,9 @@ ob_start();
 <body>
     <div class="sidenav">
         <div class="title">
-            <h4 style="float: left;"><strong>Sutorimu</strong></h4> 
+            <h4 style="float: left;" class="text-white"><strong>Sutorimu</strong></h4> 
             &nbsp; 
-            <h6 style="float: left;">admin</h6>
+            <h6 style="float: left;" class="text-white">admin</h6>
         </div>
         <ul class="nav flex-column">
         <li class="nav-item">
@@ -51,7 +51,7 @@ ob_start();
         }
 
         else if(@$_GET['page'] == 'update'){
-          include "views/update/update.php";
+          include "views/update.php";
         }
         else if(@$_GET['page'] == 'add_update'){
           include "views/update/add_update.php";
