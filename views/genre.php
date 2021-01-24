@@ -1,8 +1,9 @@
-
- <?php 
+<?php 
   include "models/m_genre.php";
   $grn = new Genre($connection);
- ?>
+
+  if(@$_GET['act'] == ''){
+?>
  <!-- Page content -->
  <div class="main">
         <nav class="navbar navbar-expand-lg">          
@@ -37,13 +38,21 @@
               <tr>
                 <th scope="row"><?php echo $no++ ?></th>
                 <td><?php echo $data->title_genre ?></td>
+                <td>                
+                  <center>
+                    <a id="edit_grn" data-bs-toggle="modal" data-bs-target="#edit" 
+                    data-id="<?php echo $data->id_genre ?>" data-genre="<?php echo $data->title_genre ?>">
+                      <button type="button" class="btn btn-dark" ><i class="fas fa-pen edit"></i></button>
+                    </a>
+                  </center>
+                </td>
                 <td>
-                
-                <center><a id="edit_grn" data-bs-toggle="modal" data-bs-target="#edit" 
-                data-id="<?php echo $data->id_genre ?>" data-genre="<?php echo $data->title_genre ?>">
-                <button type="button" class="btn btn-dark" ><i class="fas fa-pen edit"></i></button>
-                </a></center></td>
-                <td><center><a href="#"><i class="fa fa-trash delete" aria-hidden="true"></i></a></center></td>
+                  <center>
+                    <a href="?page=genre&act=delete&id=<?php echo $data->id_genre ?>" data-id="<?php echo $data->id_genre ?>" onclick="return confirm('Delete this record?')">
+                    <button type="button" class="btn btn-dark" ><i class="fa fa-trash delete" aria-hidden="true"></i></button>
+                    </a>
+                  </center>
+                </td>
               </tr>
               <?php 
                 }
@@ -51,12 +60,12 @@
             </tbody>
           </table>
         </div>
-<!-- Modal Tambah Genre -->
+        <!-- Modal Tambah Genre -->
         <div class="modal fade" id="tambah" tabindex="-1" aria-labelledby="tambahModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="tambahModalLabel">Tambah Data Genre</h5>
+                    <h5 class="modal-title" id="tambahModalLabel">Edit Genre</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <form action="" method="post">
@@ -75,21 +84,21 @@
                   if(@$_POST['tambah']){
                     $genre = $connection->conn->real_escape_string($_POST['title_grn']);
                     $grn->tambah($genre);
-                    echo "<script>alert('Data Berhasil Di tambahkan')</script>";
-                    header("location: ?page=genre");
-                    
+                    echo "<script>alert('Data Berhasil Ditambahkan')</script>";
+                    header("location: ?page=genre");                    
                   }
                 ?>
                 </div>
             </div>
         </div>
+        <!-- -------------- -->
 
-<!-- modal Edit genre -->
-<div class="modal fade" id="edit" tabindex="-1" aria-labelledby="tambahModalLabel" aria-hidden="true">
+        <!-- modal Edit genre -->
+        <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="tambahModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="tambahModalLabel">Tambah Data Genre</h5>
+                    <h5 class="modal-title" id="tambahModalLabel">Tambah Genre</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <form id="form" enctype="multipart/form-data">
@@ -101,12 +110,13 @@
                       </div>
                     </div>
                     <div class="modal-footer">
+                      <button type="reset" class="btn btn-danger">Reset</button>
                       <input type="submit" value="Submit" name="edit" class="btn btn-warning">
                     </div>
                   </form>
                 </div>
-            </div>
-        </div>
+              </div>
+          </div>
 
         <script src="assets/js/jquery-3.5.1.min.js"></script>
         <script type="text/javascript">
@@ -118,21 +128,38 @@
           })
 
           $(document).ready(function(e){
-                    $("#form").on("submit", (function(e) {
-                      e.preventDefault();
-                      $.ajax({
-                        url : 'models/proses_edit_genre.php',
-                        type : 'POST',
-                        data : new FormData(this),
-                        contentType : false,
-                        cache : false,
-                        processData : false,
-                        success : function(msg) {
-                          $('.table').html(msg);
-                        }
-                      });
-                    }));
-                  })
+            $("#form").on("submit", (function(e) {
+              e.preventDefault();
+              $.ajax({
+                url : 'models/proses_edit_genre.php',
+                type : 'POST',
+                data : new FormData(this),
+                contentType : false,
+                cache : false,
+                processData : false,
+                success : function(msg) {
+                  $('.table').html(msg);
+                }
+              });
+            }));
+          })          
         </script>
-
       </div>
+
+<?php 
+  }else if(@$_GET['act'] == 'delete'){
+    // echo $_GET['id'];
+
+    $tampil = $grn->tampil($_GET['id']);
+    $tampil->fetch_object();
+
+    $grn->hapus($_GET['id']);
+    
+    echo "<script>
+    alert('Data Berhasil Dihapus!');
+    setTimeout(
+      function(){
+        window.location = '?page=genre'
+      },1 )</script>";
+  }
+?>

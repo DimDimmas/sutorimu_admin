@@ -13,5 +13,6 @@
   $episode = $connection->conn->real_escape_string($_POST['eps']);
 
   $upd->edit("UPDATE tb_update SET title_list = '$title', episode = '$episode' WHERE no = '$id_upd'");
+  echo "<script>window.location='?page=update';</script>";
 
 ?>

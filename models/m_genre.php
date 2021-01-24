@@ -27,5 +27,16 @@
             $db = $this->mysqli->conn;
             $db->query($sql) or die($db->error);
         }
+
+        public function hapus($id){
+            $db = $this->mysqli->conn;
+            $db->query("DELETE FROM tb_genre WHERE id_genre = '$id'") or die($db->error);
+        }
+
+        function __destruct(){
+            $db = $this->mysqli->conn;
+            $db->close();
+        }
     }
+    
 ?>

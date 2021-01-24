@@ -8,7 +8,7 @@
   $grn = new Genre($connection);
   $lst = new Alist($connection);
 
-  $id_title = $_POST['id_title'];  
+  $id_list = $_POST['id_list'];  
   $title = $connection->conn->real_escape_string($_POST['title']);
   $rate = $connection->conn->real_escape_string($_POST['rate']);
   $status = $connection->conn->real_escape_string($_POST['status']);
@@ -17,8 +17,8 @@
   $aired = $connection->conn->real_escape_string($_POST['aired']);
   $durasi = $connection->conn->real_escape_string($_POST['durasi']);
   $sinopsis = $connection->conn->real_escape_string($_POST['sinopsis']);
-  $lgenre = $connection->conn->real_escape_string($_POST['lgenre']);
-
+  $chkgenre = implode(", ", $_POST['lgenre']);
+  
   $pict = $_FILES['gbr_cvr']['name'];
   $extensi = explode(".", $_FILES['gbr_cvr']['name']);
   $gbr_cvr = "cvr-".round(microtime(true)).".".end($extensi);
@@ -26,20 +26,25 @@
 
   if($pict == ""){
       $lst->edit("UPDATE tb_list SET title_list = '$title', rate = '$rate', status = '$status', type = '$type', total_episode = '$total',
-      aired = '$aired', duration = '$durasi', synopsis = '$sinopsis', genre = '$lgenre' WHERE id_list = '$id_title' ");
+      aired = '$aired', duration = '$durasi', synopsis = '$sinopsis', genre = '$chkgenre' WHERE id_list = '$id_list' ");
       echo "<script>window.location='?page=list';</script>";
   }else{
-    $gbr_awal = $lst->tampil()->fetch_object()->gbr_cvr;
+    $gbr_awal = $lst->tampil($id_list)->fetch_object()->cover_image;
     unlink("../assets/img/".$gbr_awal);
 
     $upload = move_uploaded_file($sumber, "../assets/img/".$gbr_cvr);
 
     if($upload){
         $lst->edit("UPDATE tb_list SET title_list = '$title', rate = '$rate', status = '$status', cover_image = '$gbr_cvr', type = '$type', total_episode = '$total',
-      aired = '$aired', duration = '$durasi', synopsis = '$sinopsis', genre = '$lgenre' WHERE id_list = '$id_title' ");
-      echo "<script>window.location='?page=list';</script>";
+      aired = '$aired', duration = '$durasi', synopsis = '$sinopsis', genre = '$chkgenre' WHERE id_list = '$id_list' ");
+      echo "<script>
+            alert('Edit Success');
+            window.location='?page=list';
+            </script>";
     } else {
-        echo "<script>alert('Upload Gambar Gagal')<?script>";
+        echo "<script>
+              alert('Upload Gambar Gagal');
+              window.location='?page=list';<?script>";
     }
   }
 

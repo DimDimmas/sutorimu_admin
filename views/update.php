@@ -3,6 +3,8 @@
   include "models/m_list.php";
   $upd = new Update($connection);
   $lst = new Alist($connection);
+
+  if(@$_GET['act'] == ''){
 ?>
 <!-- Page content -->
 <div class="main">
@@ -43,7 +45,13 @@
             <td><center><a id="edit_upd" data-id="<?php echo $data->no; ?>" data-title="<?php echo $data->title_list; ?>"
             data-episode="<?php echo $data->episode; ?>" data-bs-toggle="modal" data-bs-target="#edit">
               <button class="btn btn-dark"><i class="fas fa-pen edit"></i></button></a></center></td>
-            <td><center><a href="?page=delete_update"><i class="fa fa-trash delete" aria-hidden="true" ></i></a></center></td>
+            <td>
+              <center>
+                <a href="?page=update&act=delete&id=<?php echo $data->no ?>" data-id="<?php echo $data->no ?>" onclick="return confirm('Delete this record?')">
+                <button type="button" class="btn btn-dark" ><i class="fa fa-trash delete" aria-hidden="true"></i></button>
+                </a>
+              </center>
+            </td>
           </tr>
           <?php 
             }
@@ -64,6 +72,7 @@
                       <div class="form-group">
                         <label for="title_list" class="control-label">Title</label>
                         <select name="title_list" id="title_list" class="form-control">
+                        <option>-- SELECT --</option>
                         <?php 
                           $tampil = $lst->tampil();
                           while($data = $tampil->fetch_object()){
@@ -165,4 +174,20 @@
         </script>
 
 </div>
+<?php 
+  }else if(@$_GET['act'] == 'delete'){
+    // echo $_GET['id'];
 
+    $tampil = $upd->tampil($_GET['id']);
+    $tampil->fetch_object();
+
+    $upd->hapus($_GET['id']);
+    
+    echo "<script>
+    alert('Data Berhasil Dihapus!');
+    setTimeout(
+      function(){
+        window.location = '?page=update'
+      },1 )</script>";
+  }
+?>

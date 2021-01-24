@@ -7,6 +7,15 @@ a:hover {
     text-decoration: none;
 }
 
+h1, h2, h3, h4, h5, h6{
+    color: #fff
+}
+
+.modal-title{
+    color: #343A40 !important;
+    font-weight: 600;
+}
+
 body {
     background-color: #49525a;
 }
@@ -23,17 +32,20 @@ li {
 }
 
 .hover {
-    color: rgba(255, 255, 255, 0.4) !important;
+    color: #343A40 !important;
 }
 
 .hover:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 1) !important
+    box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.3);
 }
 
 .active {
+    color: #FECA57 !important;
+    background-color: #343A40;
+}
+
+.text-gray{
     color: #343A40 !important;
-    background-color: #FECA57;
 }
 
 .title {
@@ -43,7 +55,7 @@ li {
     width: 90%;
     height: 50px;
     /* background-color: #fff; */
-    border-bottom: solid #FECA57 1px;
+    border-bottom: solid #343A40 2px;
 }
 
 
@@ -60,16 +72,17 @@ li {
     top: 0;
     /* Stay at the top */
     left: 0;
-    background-color: #343A40;
+    background-color: #FECA57;
     overflow-x: hidden;
     padding-top: 20px;
     box-shadow: 1px 5px 25px rgba(0, 0, 0, 0.3);
-    border-right: solid #FECA57 3px;
+    border-right: solid #343A40 3px;
 }
 
 .main {
     margin-left: 300px;
-    height: 100%;
+    overflow-x: auto;
+    height: auto;
 }
 
 
@@ -124,4 +137,33 @@ table {
     background-color: #ffffff18;
     padding: 15px 20px;
     border-radius: 10px;
+}
+
+/* login */
+.box-login{
+    width: 300px;
+    height: 430px;
+    background-color: #fff;
+    margin-top: 10%;
+    border-radius: 10px;
+    box-shadow: 1px 5px 25px rgba(0, 0, 0, 0.6);
+    /* padding: 3%; */
+}
+.form-login-heading{
+    background-color: #FECA57;
+    padding: 10% 5% 10% 5%;
+    border-radius: 10px 10px 0 0;
+}
+.login-wrap{
+    padding: 5% 10%;
+}
+.logout{
+    width: 95%;
+    position: absolute;
+    box-shadow: 1px 5px 25px rgba(0, 0, 0, 0.3);
+    bottom: 10px;
+    color: #343A40 !important;
+}
+.logout:hover{
+    box-shadow: 1px 5px 25px rgba(0, 0, 0, 0.6);
 }
