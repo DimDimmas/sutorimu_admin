@@ -14,8 +14,8 @@
             <a class="nav-link disabled" href="#">Update Table</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="search" type="search" placeholder="Search" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" action="" method="post">
+          <input class="search" name="search" type="search" placeholder="Search" aria-label="Search">
         </form>
     </nav>
     <br><br>
@@ -35,8 +35,14 @@
         <tbody>
         <?php 
           $no = 1;
-          $tampil = $upd->tampil();
-          while($data = $tampil->fetch_object()){
+            $search = @$_POST['search'];
+            if($search != ''){
+              $tampil = $upd->search($search);                                      
+            }else{
+              $tampil = $upd->tampil();
+            }
+          
+            while($data = $tampil->fetch_object()){
         ?>
           <tr>
             <th scope="row"><?php echo $no++ ?></th>
@@ -176,7 +182,7 @@
 </div>
 <?php 
   }else if(@$_GET['act'] == 'delete'){
-    // echo $_GET['id'];
+    echo $_GET['id'];
 
     $tampil = $upd->tampil($_GET['id']);
     $tampil->fetch_object();

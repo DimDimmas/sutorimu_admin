@@ -33,9 +33,10 @@
             $db->query("DELETE FROM tb_genre WHERE id_genre = '$id'") or die($db->error);
         }
 
-        public function search($title_genre){
+        public function search(){
             $db = $this->mysqli->conn;
-            $sql = "SELECT *FROM tb_genre WHERE title_genre = $title_genre";
+            $search = trim(mysqli_real_escape_string($db, $_POST['search']));
+            $sql = "SELECT *FROM tb_genre WHERE title_genre LIKE  '%$search%'";
 
             $query = $db->query($sql) or die ($db->error);
             return $query;

@@ -28,6 +28,15 @@
             $db->query($sql) or die($db->error);
         }
 
+        public function search(){
+            $db = $this->mysqli->conn;
+            $search = trim(mysqli_real_escape_string($db, $_POST['search']));
+            $sql = "SELECT *FROM tb_update WHERE title_list LIKE  '%$search%'";
+
+            $query = $db->query($sql) or die ($db->error);
+            return $query;
+        }
+
         public function hapus($id){
             $db = $this->mysqli->conn;
             $db->query("DELETE FROM tb_update WHERE no = '$id'") or die($db->error);

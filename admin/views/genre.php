@@ -35,12 +35,14 @@
               if($_SERVER['REQUEST_METHOD'] == "POST"){
                   $search = trim(mysqli_real_escape_string($con, $_POST['search']));
                   if($search != ''){
-                    $sql = "select * from tb_genre where title_genre like '%$search%'";
-                    $query = $sql;                    
+                    $tampil = $grn->search($search);                                      
+                  }else{
+                    $tampil = $grn->tampil();
                   }
               }
               else{
                 $tampil = $grn->tampil();
+              }
                 while($data = $tampil->fetch_object()){
             ?>
               <tr>
@@ -62,8 +64,7 @@
                   </center>
                 </td>
               </tr>
-              <?php 
-                }
+              <?php                 
               }
               ?>
             </tbody>

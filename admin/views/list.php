@@ -14,8 +14,8 @@
                 <a class="nav-link disabled" href="#">Anime List</a>
               </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-              <input class="search" type="search" placeholder="Search" aria-label="Search">
+            <form class="form-inline my-2 my-lg-0" action="" method="post">
+              <input class="search" name="search" type="search" placeholder="Search" aria-label="Search">
             </form>
         </nav>
         <br><br>
@@ -43,7 +43,17 @@
             <tbody>
             <?php 
               $no = 1;
-              $tampil = $lst->tampil();
+              if($_SERVER['REQUEST_METHOD'] == "POST"){
+                $search = trim(mysqli_real_escape_string($con, $_POST['search']));
+                if($search != ''){
+                  $tampil = $lst->search($search);                                      
+                }else{
+                  $tampil = $lst->tampil();
+                }
+              }
+              else{
+                $tampil = $lst->tampil();
+              }
               while($data = $tampil->fetch_object()){
             ?>
               <tr>
