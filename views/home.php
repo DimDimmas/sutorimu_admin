@@ -24,7 +24,7 @@
                     ?>
                     <div class="container-ongoing">
                         <a href="#">
-                            <img src="admin/assets/img/<?php echo $data->cover_image ?>" alt="ongoing" class="image-ongoing">
+                            <img src="admin/assets/img/cover/<?php echo $data->cover_image ?>" alt="ongoing" class="image-ongoing">
                             <div class="rating"><i class="fas fa-star"></i> <?php echo $data->rate ?></div>
                             <div class="middle-ongoing">
                                 <div class="text-ongoing"><i class="fas fa-play"></i></div>
@@ -98,7 +98,7 @@
                 <div class="box-item" <?php echo $no ?>>
                     <a href="#">
                         <div class="image-update">
-                            <img src="admin/assets/img/<?php echo $data->cover_image ?>" alt="preview">
+                            <img src="admin/assets/img/cover/<?php echo $data->cover_image ?>" alt="preview">
                         </div>
                         <div class="title-update"><?php echo $data->title_list ?></div>
                     </a>
@@ -149,7 +149,7 @@
                     ?>
                     <div class="container-ongoing container-movie">
                         <a href="#">
-                            <img src="admin/assets/img/<?php echo $data->cover_image ?>" alt="cover" class="image-ongoing">
+                            <img src="admin/assets/img/cover/<?php echo $data->cover_image ?>" alt="cover" class="image-ongoing">
                             <div class="rating"><i class="fas fa-star"></i> <?php echo $data->rate ?></div>
                             <div class="middle-ongoing middle-movie">
                                 <div class="text-ongoing"><i class="fas fa-play"></i></div>

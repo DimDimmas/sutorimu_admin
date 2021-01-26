@@ -58,7 +58,7 @@
                 <td scope="row"><?php echo $data->title_list; ?></td>
                 <td scope="row"><?php echo $data->rate; ?></td>
                 <td scope="row"><?php echo $data->status; ?></td>
-                <td scope="row"><img src="assets/img/<?php echo $data->cover_image; ?>" width="70px" alt=""></td>
+                <td scope="row"><img src="assets/img/cover/<?php echo $data->cover_image; ?>" width="70px" alt=""></td>
                 <td scope="row"><?php echo $data->type; ?></td>
                 <td scope="row"><?php echo $data->total_episode; ?></td>
                 <td scope="row"><?php echo $data->aired; ?></td>
@@ -188,7 +188,7 @@
                       $extensi = explode(".", $_FILES['gbr_cvr']['name']);
                       $gbr_cvr = "cvr-".round(microtime(true)).".".end($extensi);
                       $sumber = $_FILES['gbr_cvr']['tmp_name'];
-                      $upload = move_uploaded_file($sumber, "assets/img/".$gbr_cvr);
+                      $upload = move_uploaded_file($sumber, "assets/img/cover/".$gbr_cvr);
 
                       if($upload){
                         $lst->tambah($title, $rate, $status, $gbr_cvr, $type, $total, $aired, $durasi, $sinopsis, $chkgenre);

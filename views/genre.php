@@ -39,7 +39,7 @@
                 <div class="box-item recomended">
                     <a href="#">
                         <div class="image-update">
-                            <img src="admin/assets/img/<?php echo $data->cover_image ?>" alt="ongoing" class="image-ongoing">
+                            <img src="admin/assets/img/cover/<?php echo $data->cover_image ?>" alt="ongoing" class="image-ongoing">
                             <div class="rating"><i class="fas fa-star"></i> <?php echo $data->rate ?></div>
                         </div>
                         <div class="title-update"><?php echo $data->title_list ?></div>

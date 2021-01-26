@@ -30,7 +30,7 @@
                         while($data = $tampil->fetch_object()){
                     ?>
                     <div class="container-ongoing">
-                        <img src="admin/assets/img/<?php echo $data->cover_image ?>" alt="list" class="image-ongoing">
+                        <img src="admin/assets/img/cover/<?php echo $data->cover_image ?>" alt="list" class="image-ongoing">
                         <div class="rating"><i class="fas fa-star"></i> <?php echo $data->rate ?> </div>
                         <div class="middle-ongoing">
                         <div class="text-ongoing"><i class="fas fa-play"></i></div>
