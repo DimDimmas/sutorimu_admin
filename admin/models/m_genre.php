@@ -28,18 +28,20 @@
             $db->query($sql) or die($db->error);
         }
 
-        public function hapus($id){
-            $db = $this->mysqli->conn;
-            $db->query("DELETE FROM tb_genre WHERE id_genre = '$id'") or die($db->error);
-        }
+        
 
-        public function search(){
+        public function search($search){
             $db = $this->mysqli->conn;
             $search = trim(mysqli_real_escape_string($db, $_POST['search']));
             $sql = "SELECT *FROM tb_genre WHERE title_genre LIKE  '%$search%'";
 
             $query = $db->query($sql) or die ($db->error);
             return $query;
+        }
+
+        public function hapus($id){
+            $db = $this->mysqli->conn;
+            $db->query("DELETE FROM tb_genre WHERE id_genre = '$id'") or die($db->error);
         }
 
         function __destruct(){

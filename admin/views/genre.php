@@ -33,7 +33,7 @@
             <?php 
               $no = 1;
               if($_SERVER['REQUEST_METHOD'] == "POST"){
-                  $search = trim(mysqli_real_escape_string($con, $_POST['search']));
+                $search = @$_POST['search'];
                   if($search != ''){
                     $tampil = $grn->search($search);                                      
                   }else{
@@ -58,7 +58,7 @@
                 </td>
                 <td>
                   <center>
-                    <a href="?page=genre&act=delete&id=<?php echo $data->id_genre ?>" data-id="<?php echo $data->id_genre ?>" onclick="return confirm('Delete this record?')">
+                    <a href="?page=genre&act=del&id=<?php echo $data->id_genre ?>" data-id="<?php echo $data->id_genre ?>" onclick="return confirm('Delete this record?')">
                     <button type="button" class="btn btn-dark" ><i class="fa fa-trash delete" aria-hidden="true"></i></button>
                     </a>
                   </center>
@@ -157,12 +157,8 @@
       </div>
 
 <?php 
-  }else if(@$_GET['act'] == 'delete'){
-    // echo $_GET['id'];
-
-    $tampil = $grn->tampil($_GET['id']);
-    $tampil->fetch_object();
-
+  }else if(@$_GET['act'] == 'del'){
+    // $tampil = $grn->tampil($_GET['id']);
     $grn->hapus($_GET['id']);
     
     echo "<script>

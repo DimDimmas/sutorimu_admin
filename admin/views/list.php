@@ -44,7 +44,7 @@
             <?php 
               $no = 1;
               if($_SERVER['REQUEST_METHOD'] == "POST"){
-                $search = trim(mysqli_real_escape_string($con, $_POST['search']));
+                $search = @$_POST['search'];
                 if($search != ''){
                   $tampil = $lst->search($search);                                      
                 }else{
