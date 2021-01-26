@@ -32,5 +32,13 @@
             $db = $this->mysqli->conn;
             $db->query("DELETE FROM tb_update WHERE no = '$id'") or die($db->error);
         }
+        
+        public function tampilUpdate($limit_start, $limit){
+            $db = $this->mysqli->conn;
+            $sql = "SELECT *FROM tb_list, tb_update where tb_list.title_list = tb_update.title_list ORDER BY no DESC limit $limit_start, $limit";
+
+            $query = $db->query($sql) or die ($db->error);
+            return $query;
+        }
     }
 ?>

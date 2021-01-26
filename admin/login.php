@@ -36,7 +36,8 @@
                     }
                 ?>
                 <br>
-                <button style="transition: 0.3s" class="btn btn-warning btn-block" type="submit"><i class="fa fa-lock"></i> SIGN IN</button>          
+                <button style="transition: 0.3s" class="btn btn-warning btn-block" type="submit"><i class="fa fa-lock"></i> SIGN IN</button> 
+                <a href="../" style="transition: 0.3s; margin-top: 10px;" class="btn btn-danger btn-block"><i class="fa fa-arrow-left" aria-hidden="true"></i> TO WEBSITE</a>          
             </div>
             </form>
         </div>

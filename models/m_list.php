@@ -34,6 +34,7 @@
             $db->query("DELETE FROM tb_list WHERE id_list = '$id'") or die($db->error);
         }
 
+
         public function show($id){
             $db = $this->mysqli->conn;
             $sql = "SELECT *FROM tb_list WHERE id_list = '$id'";
@@ -55,5 +56,29 @@
             return $query;
         }
 
+        public function recommend(){
+            $db = $this->mysqli->conn;
+            $limit = 5;
+            $sql = "SELECT *FROM tb_list ORDER BY rand() limit $limit";
+            $query = $db->query($sql) or die($db->error);
+            return $query;
+        }
+
+        public function tampilList($limit_start, $limit){
+            $db = $this->mysqli->conn;
+            $sql = "SELECT *FROM tb_list WHERE type = 'Movie' ORDER BY id_list DESC limit $limit_start, $limit";
+
+            $query = $db->query($sql) or die ($db->error);
+            return $query;
+        }
+
+        public function search(){
+            $db = $this->mysqli->conn;
+            $search = trim(mysqli_real_escape_string($db, $_POST['search']));
+            $sql = "SELECT *FROM tb_list WHERE title_list LIKE  '%$search%'";
+
+            $query = $db->query($sql) or die ($db->error);
+            return $query;
+        }
     }
 ?>

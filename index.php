@@ -1,7 +1,8 @@
 <?php 
-require_once('config/koneksi.php');
-require_once('models/database.php');
-$connection = new Database($host, $user, $pass, $database);
+    require_once('config/koneksi.php');
+    require_once('config/config.php');
+    require_once('models/database.php');
+    $connection = new Database($host, $user, $pass, $database);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,34 +35,34 @@ $connection = new Database($host, $user, $pass, $database);
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="./">Sutorimu</a>
+            <a class="navbar-brand" href="?page=sutorimu">Sutorimu</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
               <ul class="nav navbar-nav ml-auto justify-content-end">
-                <li class="nav-item active">
-                  <a class="nav-link" href="./">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item <?php echo $link_active; ?>">
+                  <a class="nav-link" href="?page=sutorimu">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="?page=anime_list">Anime List</a>
+                <li class="nav-item <?php echo $link_active; ?>">
+                  <a class="nav-link" href="?page=list">Anime List</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item <?php echo $link_active; ?>">
                     <a class="nav-link" href="?page=movie">Movie</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="genre.html">Genre</a>
+                <li class="nav-item <?php echo $link_active; ?>">
+                  <a class="nav-link" href="?page=genre">Genre</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="request.html">Request</a>
+                <li class="nav-item <?php echo $link_active; ?>">
+                  <a class="nav-link" href="?page=request">Request</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-search"></i>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <form>
-                            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                        <form action="?page=list" method="post">
+                            <input class="form-control" name="search" type="search" placeholder="Search" aria-label="Search">
                         </form>
                     </div>
                 </li>
@@ -69,42 +70,22 @@ $connection = new Database($host, $user, $pass, $database);
             </div>
         </nav>
 
-        <div class="container-fluid" style="margin-top: 2%;">
-            <div class="row">
-                
-                <?php 
-                    if(@$_GET['page'] == ''){
-                        include "views/home.php";
-                    } else if(@$_GET['page'] == 'tampil'){
-                        include "views/tampil.php";
-                    } else if(@$_GET['page'] == 'anime_list'){
-                        include "views/anime_list.php";
-                    }else if(@$_GET['page'] == 'movie'){
-                        include "views/movie.php";
-                    }
-                ?>
-                
-
-                <div class="space">
-                    <!-- genre -->
-                    <div class="ongoing">
-                        <div class="title-ongoing">
-                            <strong><h6>Genre</h6></strong>
-                        </div>
-                        <ul class="ul-genre">
-                            <li><a href="#"><i class="fas fa-caret-right"></i> &nbsp; Action <span class="right count">(15)</span></a></li>
-                            <li><a href="#"><i class="fas fa-caret-right"></i> &nbsp; Comedy <span class="right count">(15)</span></a></li>
-                            <li><a href="#"><i class="fas fa-caret-right"></i> &nbsp; Fantasy <span class="right count">(15)</span></a></li>
-                            <li><a href="#"><i class="fas fa-caret-right"></i> &nbsp; Magic <span class="right count">(15)</span></a></li>
-                            <li><a href="#"><i class="fas fa-caret-right"></i> &nbsp; Romance <span class="right count">(15)</span></a></li>
-                            <li><a href="#"><i class="fas fa-caret-right"></i> &nbsp; School <span class="right count">(15)</span></a></li>
-                            <li><a href="#"><i class="fas fa-caret-right"></i> &nbsp; Drama <span class="right count">(15)</span></a></li>
-                        </ul>
-                    </div>
-                <!-- end genre -->
-                </div>
-            </div>
-        </div>
+        <?php 
+            if(@$_GET['page'] == '' OR @$_GET['page'] == 'sutorimu'){
+                include "views/home.php";
+                $link_active = ($page == 'sutorimu' OR $page=='')? 'active' : '';
+            } else if(@$_GET['page'] == 'tampil'){
+                include "views/tampil.php";
+            } else if(@$_GET['page'] == 'list'){
+                include "views/list.php";
+            }else if(@$_GET['page'] == 'movie'){
+                include "views/movie.php";
+            }else if(@$_GET['page'] == 'genre'){
+                include "views/genre.php";
+            }else if(@$_GET['page'] == 'request'){
+                include "views/request.php";
+            }
+        ?>
         
         <footer>
             <i class="fa fa-copyright" aria-hidden="true"></i> Copyright Sutorimu - Anime Streaming Website
