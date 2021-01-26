@@ -9,7 +9,7 @@
 
         public function tampil($id = null){
             $db = $this->mysqli->conn;
-            $sql = "SELECT *FROM tb_list ORDER BY id_list desc";
+            $sql = "SELECT *FROM tb_list";
             if($id != null){
                 $sql .= " WHERE id_list = $id";
             }
@@ -32,27 +32,6 @@
         public function hapus($id){
             $db = $this->mysqli->conn;
             $db->query("DELETE FROM tb_list WHERE id_list = '$id'") or die($db->error);
-        }
-
-        public function show($id){
-            $db = $this->mysqli->conn;
-            $sql = "SELECT *FROM tb_list WHERE id_list = '$id'";
-            $query = $db->query($sql) or die($db->error);
-            return $query;
-        }
-
-        public function movie(){
-            $db = $this->mysqli->conn;
-            $sql = "SELECT *FROM tb_list WHERE type = 'Movie'";
-            $query = $db->query($sql) or die($db->error);
-            return $query;
-        }
-
-        public function tv(){
-            $db = $this->mysqli->conn;
-            $sql = "SELECT *FROM tb_list WHERE type = 'TV'";
-            $query = $db->query($sql) or die($db->error);
-            return $query;
         }
 
     }

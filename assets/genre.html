@@ -1,15 +1,10 @@
-<?php 
-require_once('config/koneksi.php');
-require_once('models/database.php');
-$connection = new Database($host, $user, $pass, $database);
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Sutorimu - Anime Streaming Website</title>
+        <title>Genres - Sutorimu</title>
 
         <!-- slick -->
         <link rel="stylesheet" type="text/css" href="assets/slick/slick.css"/>
@@ -34,26 +29,26 @@ $connection = new Database($host, $user, $pass, $database);
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="./">Sutorimu</a>
+            <a class="navbar-brand" href="index.html">Sutorimu</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
               <ul class="nav navbar-nav ml-auto justify-content-end">
+                <li class="nav-item ">
+                  <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="list.html">Anime List</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="movie.html">Movie</a>
+                </li>
                 <li class="nav-item active">
-                  <a class="nav-link" href="./">Home <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="#">Genre <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="?page=anime_list">Anime List</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="?page=movie">Movie</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="genre.html">Genre</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="request.html">Request</a>
+                    <a class="nav-link" href="request.html">Request</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -71,37 +66,39 @@ $connection = new Database($host, $user, $pass, $database);
 
         <div class="container-fluid" style="margin-top: 2%;">
             <div class="row">
-                
-                <?php 
-                    if(@$_GET['page'] == ''){
-                        include "views/home.php";
-                    } else if(@$_GET['page'] == 'tampil'){
-                        include "views/tampil.php";
-                    } else if(@$_GET['page'] == 'anime_list'){
-                        include "views/anime_list.php";
-                    }else if(@$_GET['page'] == 'movie'){
-                        include "views/movie.php";
-                    }
-                ?>
-                
-
-                <div class="space">
-                    <!-- genre -->
+                <div class="col-sm-8 space">
+                    <!-- list genre -->
                     <div class="ongoing">
                         <div class="title-ongoing">
-                            <strong><h6>Genre</h6></strong>
+                            <strong><h5>Genre</h5></strong>
                         </div>
-                        <ul class="ul-genre">
-                            <li><a href="#"><i class="fas fa-caret-right"></i> &nbsp; Action <span class="right count">(15)</span></a></li>
-                            <li><a href="#"><i class="fas fa-caret-right"></i> &nbsp; Comedy <span class="right count">(15)</span></a></li>
-                            <li><a href="#"><i class="fas fa-caret-right"></i> &nbsp; Fantasy <span class="right count">(15)</span></a></li>
-                            <li><a href="#"><i class="fas fa-caret-right"></i> &nbsp; Magic <span class="right count">(15)</span></a></li>
-                            <li><a href="#"><i class="fas fa-caret-right"></i> &nbsp; Romance <span class="right count">(15)</span></a></li>
-                            <li><a href="#"><i class="fas fa-caret-right"></i> &nbsp; School <span class="right count">(15)</span></a></li>
-                            <li><a href="#"><i class="fas fa-caret-right"></i> &nbsp; Drama <span class="right count">(15)</span></a></li>
-                        </ul>
+                        <div class="container-genre" id="container-genre">
+                            
+                        </div>
                     </div>
-                <!-- end genre -->
+                    <!-- end list genre -->
+                </div>
+
+                <div class="col-sm-4 space">
+                    <!-- recomended -->
+                    <div class="ongoing">
+                        <div class="title-ongoing">
+                            <strong><h6>Recomended</h6></strong>
+                        </div>
+                        <div class="box-item recomended">
+                            <a href="#">
+                                <div class="image-update">
+                                    <img src="assets/img/movie/108892.jpg" alt="ongoing" class="image-ongoing">
+                                    <div class="rating"><i class="fas fa-star"></i> N/A</div>
+                                </div>
+                                <div class="title-update">Josee to Tora to Sakana-tachi</div>
+                            </a>
+                            <div class="desc-update">
+                                Genre : Action, Sci-Fi, Supernatural, Magic, Romance, School <br>
+                            </div>
+                        </div>
+                    </div>
+                <!-- end recomended -->
                 </div>
             </div>
         </div>
@@ -109,23 +106,16 @@ $connection = new Database($host, $user, $pass, $database);
         <footer>
             <i class="fa fa-copyright" aria-hidden="true"></i> Copyright Sutorimu - Anime Streaming Website
         </footer>
-
-        <div class="back-top"><i class="fas fa-chevron-up"></i></div>
     </body>
-    
-<script type="text/javascript">
-    var $backToTop = $(".back-top");
-    $backToTop.hide();
-    $(window).on('scroll', function() {
-        if ($(this).scrollTop() > 100) {
-        $backToTop.fadeIn();
-        } else {
-        $backToTop.fadeOut();
-        }
-    });
-
-    $backToTop.on('click', function(e) {
-        $("html, body").animate({scrollTop: 0}, 500);
+<script>
+    $(document).ready(function(){
+        $.getJSON("genre.json", function(data) {
+            var genre_data = '';
+            $.each(data, function(key, value){
+                genre_data += '<a href="#" class="box-genre">'+value.title+'</a>';
+            });
+            $('#container-genre').append(genre_data);
+        });
     });
 </script>
 </html>

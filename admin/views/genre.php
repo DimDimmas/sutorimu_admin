@@ -12,8 +12,8 @@
                 <a class="nav-link disabled" href="#">Genre Table</a>
               </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-              <input class="search" type="search" placeholder="Search" aria-label="Search">
+            <form class="form-inline my-2 my-lg-0" action="" method="post">
+              <input class="search" name="search" type="search" placeholder="Search" aria-label="Search">
             </form>
         </nav>
         <br><br>
@@ -24,19 +24,27 @@
           <table class="table table-striped table-dark">
             <thead>
               <tr>
-                <th scope="col">No</th>
-                <th scope="col">Title Genre</th>
-                <th scope="col" colspan="2"><center> Action</center></th>
+                <th>No</th>
+                <th>Title Genre</th>
+                <th colspan="2"><center> Action</center></th>
               </tr>
             </thead>
             <tbody>
             <?php 
               $no = 1;
-              $tampil = $grn->tampil();
-              while($data = $tampil->fetch_object()){
+              if($_SERVER['REQUEST_METHOD'] == "POST"){
+                  $search = trim(mysqli_real_escape_string($con, $_POST['search']));
+                  if($search != ''){
+                    $sql = "select * from tb_genre where title_genre like '%$search%'";
+                    $query = $sql;                    
+                  }
+              }
+              else{
+                $tampil = $grn->tampil();
+                while($data = $tampil->fetch_object()){
             ?>
               <tr>
-                <th scope="row"><?php echo $no++ ?></th>
+                <td><?php echo $no++ ?></td>
                 <td><?php echo $data->title_genre ?></td>
                 <td>                
                   <center>
@@ -56,6 +64,7 @@
               </tr>
               <?php 
                 }
+              }
               ?>
             </tbody>
           </table>
