@@ -1,11 +1,9 @@
 <?php 
-
   include "models/m_genre.php";
   include "models/m_list.php";
   $grn = new Genre($connection);
   $lst = new Alist($connection);
 
-  if(@$_GET['act'] == ''){
 ?>
 <div class="main">
         <nav class="navbar navbar-expand-lg">          
@@ -44,16 +42,15 @@
             <?php 
               $no = 1;
               if($_SERVER['REQUEST_METHOD'] == "POST"){
-                $search = trim(mysqli_real_escape_string($con, $_POST['search']));
+                $search = trim(mysqli_real_escape_string($con, @$_POST['search']));
                 if($search != ''){
                   $tampil = $lst->search($search);                                      
                 }else{
                   $tampil = $lst->tampil();
                 }
-              }
-              else{
-                $tampil = $lst->tampil();
-              }
+            }else{
+              $tampil = $lst->tampil();
+            }
               while($data = $tampil->fetch_object()){
             ?>
               <tr>
@@ -88,7 +85,7 @@
                 <button class="btn btn-dark"><i class="fas fa-pen edit"></i></button>
                 </a></center></td>
                 <td scope="row"><center>
-                  <a href="?page=list&act=delete&id=<?php echo $data->id_list ?>" onclick="return confirm('Delete this record?')">
+                  <a href="deletel.php?id=<?php echo $data->id_list; ?>" onclick="return confirm('Delete this record?')">
                     <button type="button" class="btn btn-dark" ><i class="fa fa-trash delete" aria-hidden="true"></i></button>
                   </a>
                 </center></td>
@@ -195,11 +192,11 @@
 
                       if($upload){
                         $lst->tambah($title, $rate, $status, $gbr_cvr, $type, $total, $aired, $durasi, $sinopsis, $chkgenre);
-                        echo "<script>alert('Data Berhasil Di tambahkan')</script>";
-                        header("location:?page=list");
+                        echo "<script>alert('Data Berhasil Di tambahkan')</script>
+                        <script>window.location='?page=list';</script>";
                       }else{
-                        echo "<script>alert('Upload Gambar Gagal')</script>";
-                        header("location:?page=list");
+                        echo "<script>alert('Upload Gambar Gagal')</script>
+                        <script>window.location='?page=list';</script>";
                       }
                     }
                   ?>
@@ -333,19 +330,3 @@
 
 
       </div>
-
-<?php 
-  }else if(@$_GET['act'] == 'delete'){
-    $gbr_awal = $lst->tampil($_GET['id'])->fetch_object()->cover_image;
-    unlink("assets/img/".$gbr_awal);
-
-    $lst->hapus($_GET['id']);
-    
-    echo "<script>
-    alert('Data Berhasil Dihapus!');
-    setTimeout(
-      function(){
-        window.location = '?page=list'
-      },1 )</script>";
-  }
-?>

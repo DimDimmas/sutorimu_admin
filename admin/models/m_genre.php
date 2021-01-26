@@ -30,7 +30,7 @@
 
         public function hapus($id){
             $db = $this->mysqli->conn;
-            $db->query("DELETE FROM tb_genre WHERE id_genre = '$id'") or die($db->error);
+            $db->query("DELETE FROM tb_genre WHERE id_genre = $id") or die($db->error);
         }
 
         public function search(){

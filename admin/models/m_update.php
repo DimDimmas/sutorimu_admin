@@ -9,7 +9,7 @@
 
         public function tampil($id = null){
             $db = $this->mysqli->conn;
-            $sql = "SELECT * FROM tb_update";
+            $sql = "SELECT * FROM tb_update ORDER BY no DESC";
             if($id != null){
                 $sql .=" WHERE no = $id";
             }

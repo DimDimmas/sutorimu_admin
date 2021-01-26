@@ -2,7 +2,6 @@
   include "models/m_genre.php";
   $grn = new Genre($connection);
 
-  if(@$_GET['act'] == ''){
 ?>
  <!-- Page content -->
  <div class="main">
@@ -33,16 +32,16 @@
             <?php 
               $no = 1;
               if($_SERVER['REQUEST_METHOD'] == "POST"){
-                  $search = trim(mysqli_real_escape_string($con, $_POST['search']));
-                  if($search != ''){
-                    $tampil = $grn->search($search);                                      
-                  }else{
-                    $tampil = $grn->tampil();
-                  }
-              }
-              else{
-                $tampil = $grn->tampil();
-              }
+                $search = trim(mysqli_real_escape_string($con, @$_POST['search']));
+                if($search != ''){
+                  $tampil = $grn->search($search);                                      
+                }else{
+                  $tampil = $grn->tampil();
+                }
+            }else{
+              $tampil = $grn->tampil();
+            }
+              
                 while($data = $tampil->fetch_object()){
             ?>
               <tr>
@@ -58,8 +57,8 @@
                 </td>
                 <td>
                   <center>
-                    <a href="?page=genre&act=delete&id=<?php echo $data->id_genre ?>" data-id="<?php echo $data->id_genre ?>" onclick="return confirm('Delete this record?')">
-                    <button type="button" class="btn btn-dark" ><i class="fa fa-trash delete" aria-hidden="true"></i></button>
+                    <a href="deleteg.php?id=<?php echo $data->id_genre; ?>" onclick="return confirm('Delete this record?')">
+                      <button type="button" class="btn btn-dark" ><i class="fa fa-trash delete" aria-hidden="true"></i></button>
                     </a>
                   </center>
                 </td>
@@ -94,8 +93,8 @@
                   if(@$_POST['tambah']){
                     $genre = $connection->conn->real_escape_string($_POST['title_grn']);
                     $grn->tambah($genre);
-                    echo "<script>alert('Data Berhasil Ditambahkan')</script>";
-                    header("location: ?page=genre");                    
+                    echo "<script>alert('Data Berhasil Ditambahkan')</script>
+                    <script>window.location='?page=genre';</script>";
                   }
                 ?>
                 </div>
@@ -155,21 +154,3 @@
           })          
         </script>
       </div>
-
-<?php 
-  }else if(@$_GET['act'] == 'delete'){
-    // echo $_GET['id'];
-
-    $tampil = $grn->tampil($_GET['id']);
-    $tampil->fetch_object();
-
-    $grn->hapus($_GET['id']);
-    
-    echo "<script>
-    alert('Data Berhasil Dihapus!');
-    setTimeout(
-      function(){
-        window.location = '?page=genre'
-      },1 )</script>";
-  }
-?>

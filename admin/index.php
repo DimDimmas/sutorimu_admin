@@ -23,8 +23,8 @@
     <link rel="stylesheet" href="assets/css/bs/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/fa/all.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/dataTables/datatables.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 
 </head>
@@ -86,14 +86,14 @@
 </body>
     <script src="assets/js/jquery-3.5.1.min.js"></script>
     <script src="assets/js/bs/bootstrap.min.js"></script>
+    <script src="assets/dataTables/datatables.min.js"></script>
     <script src="assets/js/fa/all.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <script src="assets/js/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-    <script src="//cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-    <script>
-      $(document).ready( function () {
-          $('#table-genre').DataTable();
+    <script type="text/javascript">
+      $(document).ready(function () {
+          $('#datatabel').DataTable();
       } );
     </script>
 </html>

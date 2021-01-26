@@ -4,7 +4,6 @@
   $upd = new Update($connection);
   $lst = new Alist($connection);
 
-  if(@$_GET['act'] == ''){
 ?>
 <!-- Page content -->
 <div class="main">
@@ -53,7 +52,7 @@
               <button class="btn btn-dark"><i class="fas fa-pen edit"></i></button></a></center></td>
             <td>
               <center>
-                <a href="?page=update&act=delete&id=<?php echo $data->no ?>" data-id="<?php echo $data->no ?>" onclick="return confirm('Delete this record?')">
+                <a href="deleteu.php?id=<?php echo $data->no; ?>" data-id="<?php echo $data->no ?>" onclick="return confirm('Delete this record?')">
                 <button type="button" class="btn btn-dark" ><i class="fa fa-trash delete" aria-hidden="true"></i></button>
                 </a>
               </center>
@@ -105,8 +104,8 @@
                       $episode = $connection->conn->real_escape_string($_POST['eps']);
 
                       $upd->tambah($title, $episode);
-                      echo "<script>alert('Data Berhasil Ditambahkan');</script>";
-                      header("location: ?page=update");
+                      echo "<script>alert('Data Berhasil Ditambahkan');</script>
+                      <script>window.location='?page=update';</script>";
                     }
                   ?>
                 </div>
@@ -180,20 +179,3 @@
         </script>
 
 </div>
-<?php 
-  }else if(@$_GET['act'] == 'delete'){
-    echo $_GET['id'];
-
-    $tampil = $upd->tampil($_GET['id']);
-    $tampil->fetch_object();
-
-    $upd->hapus($_GET['id']);
-    
-    echo "<script>
-    alert('Data Berhasil Dihapus!');
-    setTimeout(
-      function(){
-        window.location = '?page=update'
-      },1 )</script>";
-  }
-?>
