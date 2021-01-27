@@ -87,7 +87,7 @@
                 <button class="btn btn-dark"><i class="fas fa-pen edit"></i></button>
                 </a></center></td>
                 <td scope="row"><center>
-                  <a href="deletel.php?id=<?php echo $data->id_list; ?>" onclick="return confirm('Delete this record?')">
+                  <a href="?page=deletel&id=<?php echo $data->id_list; ?>" onclick="return confirm('Delete this record?')">
                     <button type="button" class="btn btn-dark" ><i class="fa fa-trash delete" aria-hidden="true"></i></button>
                   </a>
                 </center></td>
