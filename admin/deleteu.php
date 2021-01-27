@@ -11,11 +11,18 @@ $data = mysqli_fetch_array($pilih);
 
 $delCvr = $data['preview'];
 
-unlink("assets/img/preview/".$delCvr);
- 
 // menghapus data dari database
-mysqli_query($con,"delete from tb_update where no='$no'");
- 
-// mengalihkan halaman kembali ke index.php
-header("location:index.php?page=update")
+if($delCvr == ''){
+    mysqli_query($con,"delete from tb_update where no='$no'");
+
+    echo "<script>alert('Berhasil Dihapus')</script>
+    <script>window.location='index.php?page=update';</script>";
+}else{
+    unlink("assets/img/preview/".$delCvr);
+    mysqli_query($con,"delete from tb_update where no='$no'");
+
+    echo "<script>alert('Berhasil Dihapus')</script>
+    <script>window.location='index.php?page=update';</script>";
+}
+
 ?>

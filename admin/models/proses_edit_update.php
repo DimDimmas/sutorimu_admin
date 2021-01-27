@@ -18,16 +18,14 @@
     $sumber = $_FILES['gbr_prv']['tmp_name'];
 
     if($pict == ''){
-      $upd->edit("UPDATE tb_update SET title_list = '$title', episode = '$episode', embed_link = '$embed' WHERE no = '$id'");
+      $upd->edit("UPDATE tb_update SET title_list = '$title', episode = '$episode', embed_link = '$embed' WHERE tb_update . no = '$id'");
       echo "<script>window.location='?page=update';</script>";
     }else{
-      $gbr_awal = $upd->tampil($id)->fetch_object()->preview;
-      unlink("../assets/img/preview/".$gbr_awal);
   
       $upload = move_uploaded_file($sumber, "../assets/img/preview/".$gbr_prv);
   
       if($upload){
-          $upd->edit("UPDATE tb_update SET title_list = '$title', episode = '$episode', embed_link = '$embed,  preview = '$gbr_prv' WHERE no = '$id'");
+          $upd->edit("UPDATE tb_update SET title_list = '$title', episode = '$episode', preview = '$gbr_prv', embed_link = '$embed' WHERE tb_update . no = '$id'");
         echo "<script>
               alert('Edit Success');
               window.location='?page=update';

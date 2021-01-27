@@ -35,6 +35,7 @@
                 <th scope="col">Duration</th>
                 <th scope="col"><center>Synopsis</center></th>
                 <th scope="col">Genre</th>
+                <th scope="col">Trailer</th>
                 <th scope="col" colspan="2"><center> Action</center></th>
               </tr>
             </thead>
@@ -77,11 +78,12 @@
                   ?>
                 </td>
                 <td scope="row"><?php echo $data->genre; ?></td>
+                <td scope="row"><a href="https://www.youtube.com/watch?v=<?php echo $data->trailer; ?>"><?php echo $data->trailer; ?></a></td>
                 <td><center><a id="edit_lst" data-bs-toggle="modal" data-bs-target="#edit" data-id="<?php echo $data->id_list; ?>" 
                 data-title="<?php echo $data->title_list; ?>" data-rate="<?php echo $data->rate; ?>" data-status="<?php echo $data->status; ?>"
                 data-gbr="<?php echo $data->cover_image; ?>" data-type="<?php echo $data->type; ?>" data-total="<?php echo $data->total_episode; ?>"
                 data-aired="<?php echo $data->aired; ?>" data-durasi="<?php echo $data->duration; ?>" data-sinopsis="<?php echo $data->synopsis; ?>"
-                data-genre="<?php echo $data->genre; ?>">
+                data-genre="<?php echo $data->genre; ?>" data-trailer="<?php echo $data->trailer; ?>">
                 <button class="btn btn-dark"><i class="fas fa-pen edit"></i></button>
                 </a></center></td>
                 <td scope="row"><center>
@@ -151,6 +153,10 @@
                     <textarea class="form-control" id="sinopsis" name="sinopsis" rows="3"></textarea>
                   </div>
                   <div class="form-group">
+                    <label for="">Trailer</label>
+                    <input type="text" class="form-control" name="trailer" id="trailer" placeholder="Youtube Link">
+                  </div> 
+                  <div class="form-group">
                     <label for="">Genre</label>
                     <div class="form-check">
                         <?php 
@@ -181,6 +187,7 @@
                       $aired = $connection->conn->real_escape_string($_POST['aired']);
                       $durasi = $connection->conn->real_escape_string($_POST['durasi']);
                       $sinopsis = $connection->conn->real_escape_string($_POST['sinopsis']);
+                      $trailer = $connection->conn->real_escape_string($_POST['trailer']);
                       $lgenre = $connection->conn->real_escape_string($_POST['lgenre']);
 
                       $chkgenre = implode(", ", $_POST['lgenre']);
@@ -191,7 +198,7 @@
                       $upload = move_uploaded_file($sumber, "assets/img/cover/".$gbr_cvr);
 
                       if($upload){
-                        $lst->tambah($title, $rate, $status, $gbr_cvr, $type, $total, $aired, $durasi, $sinopsis, $chkgenre);
+                        $lst->tambah($title, $rate, $status, $gbr_cvr, $type, $total, $aired, $durasi, $sinopsis, $chkgenre, $trailer);
                         echo "<script>alert('Data Berhasil Di tambahkan')</script>
                         <script>window.location='?page=list';</script>";
                       }else{
@@ -263,6 +270,10 @@
                       <textarea class="form-control" id="sinopsis" name="sinopsis" rows="3"></textarea>
                     </div>
                     <div class="form-group">
+                      <label for="">Trailer</label>
+                      <input type="text" class="form-control" name="trailer" id="trailer" placeholder="Youtube Link">
+                    </div> 
+                    <div class="form-group">
                       <label for="">Genre</label>
                       <div class="form-check">
                       <?php 
@@ -298,16 +309,18 @@
             var aired = $(this).data('aired');
             var durasi = $(this).data('durasi');
             var sinopsis = $(this).data('sinopsis');
+            var trailer = $(this).data('trailer');
             $("#modal-edit #id_list").val(idlist);
             $("#modal-edit #title").val(title);
             $("#modal-edit #rate").val(rate);
             $("#modal-edit #status").val(status);
-            $("#modal-edit #pict").attr("src", "assets/img/"+gbrcvr);
+            $("#modal-edit #pict").attr("src", "assets/img/cover/"+gbrcvr);
             $("#modal-edit #type").val(type);
             $("#modal-edit #total").val(total);
             $("#modal-edit #aired").val(aired);
             $("#modal-edit #durasi").val(durasi);
             $("#modal-edit #sinopsis").val(sinopsis);
+            $("#modal-edit #trailer").val(trailer);
           })
 
           $(document).ready(function(e){
