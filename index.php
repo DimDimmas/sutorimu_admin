@@ -84,6 +84,8 @@
                 include "views/genre.php";
             }else if(@$_GET['page'] == 'request'){
                 include "views/request.php";
+            }else if(@$_GET['page'] == 'anime'){
+                include "views/anime.php";
             }
         ?>
         

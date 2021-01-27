@@ -17,11 +17,11 @@
                         
                         $limit_start = ($page - 1) * $limit;
                         $no = $limit_start + 1; 
-                        $tampil = $lst->tampilList($limit_start, $limit);
+                        $tampil = $lst->movie($limit_start, $limit);
                         while($data = $tampil->fetch_object()){
                     ?>
                     <div class="box-item recomended movie-container" <?php echo $no ?>>
-                        <a href="#">
+                        <a href="?page=anime&anime=<?php echo $data->title_list ?>">
                             <div class="image-update">
                                 <img src="admin/assets/img/cover/<?php echo $data->cover_image ?>" alt="ongoing" class="image-ongoing">
                                 <div class="rating"><i class="fas fa-star"></i> <?php echo $data->rate ?></div>

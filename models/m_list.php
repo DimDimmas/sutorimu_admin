@@ -34,24 +34,23 @@
             $db->query("DELETE FROM tb_list WHERE id_list = '$id'") or die($db->error);
         }
 
-
-        public function show($id){
+        public function show($title){
             $db = $this->mysqli->conn;
-            $sql = "SELECT *FROM tb_list WHERE id_list = '$id'";
+            $sql = "SELECT *FROM tb_list WHERE title_list = '$title'";
             $query = $db->query($sql) or die($db->error);
             return $query;
         }
 
-        public function movie(){
+        public function movie($limit_start, $limit){
             $db = $this->mysqli->conn;
-            $sql = "SELECT *FROM tb_list WHERE type = 'Movie'";
+            $sql = "SELECT *FROM tb_list WHERE type = 'Movie' ORDER BY title_list ASC limit $limit_start, $limit";
             $query = $db->query($sql) or die($db->error);
             return $query;
         }
 
         public function tv(){
             $db = $this->mysqli->conn;
-            $sql = "SELECT *FROM tb_list WHERE type = 'TV'";
+            $sql = "SELECT *FROM tb_list WHERE type = 'TV' ORDER BY title_list ASC";
             $query = $db->query($sql) or die($db->error);
             return $query;
         }
@@ -64,9 +63,17 @@
             return $query;
         }
 
-        public function tampilList($limit_start, $limit){
+        public function tampilMovie(){
             $db = $this->mysqli->conn;
-            $sql = "SELECT *FROM tb_list WHERE type = 'Movie' ORDER BY id_list DESC limit $limit_start, $limit";
+            $sql = "SELECT *FROM tb_list WHERE type = 'Movie'";
+
+            $query = $db->query($sql) or die ($db->error);
+            return $query;
+        }
+        
+        public function tampilGenre($genre){
+            $db = $this->mysqli->conn;
+            $sql = "SELECT *FROM tb_list WHERE genre LIKE '%$genre%'";
 
             $query = $db->query($sql) or die ($db->error);
             return $query;

@@ -32,7 +32,7 @@
     $gbr_awal = $lst->tampil($id_list)->fetch_object()->cover_image;
     unlink("../assets/img/cover/".$gbr_awal);
 
-    $upload = move_uploaded_file($sumber, "../assets/img/cover".$gbr_cvr);
+    $upload = move_uploaded_file($sumber, "../assets/img/cover/".$gbr_cvr);
 
     if($upload){
         $lst->edit("UPDATE tb_list SET title_list = '$title', rate = '$rate', status = '$status', cover_image = '$gbr_cvr', type = '$type', total_episode = '$total',

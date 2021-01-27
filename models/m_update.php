@@ -40,5 +40,13 @@
             $query = $db->query($sql) or die ($db->error);
             return $query;
         }
+
+        public function show($title){
+            $db = $this->mysqli->conn;
+            $sql = "SELECT *FROM tb_update WHERE title_list = '$title'";
+            $query = $db->query($sql) or die($db->error);
+            return $query;
+        }
+
     }
 ?>

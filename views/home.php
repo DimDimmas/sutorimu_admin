@@ -23,7 +23,7 @@
                         while($data = $tampil->fetch_object()){
                     ?>
                     <div class="container-ongoing">
-                        <a href="#">
+                        <a href="?page=anime&anime=<?php echo $data->title_list ?>">
                             <img src="admin/assets/img/cover/<?php echo $data->cover_image ?>" alt="ongoing" class="image-ongoing">
                             <div class="rating"><i class="fas fa-star"></i> <?php echo $data->rate ?></div>
                             <div class="middle-ongoing">
@@ -96,7 +96,7 @@
                     while($data = $tampil->fetch_object()){
                 ?>
                 <div class="box-item" <?php echo $no ?>>
-                    <a href="#">
+                    <a href="?page=anime&anime=<?php echo $data->title_list ?>&act=episode&episode=<?php echo $data->episode ?>">
                         <div class="image-update">
                             <img src="admin/assets/img/cover/<?php echo $data->cover_image ?>" alt="preview">
                         </div>
@@ -138,17 +138,17 @@
                     <div class="row">
                         <div class="col"><strong><h5>Movie</h5></strong></div>
                     
-                        <div class="col"><a href="movie.php" class="button-movie">More</a>
+                        <div class="col"><a href="?page=movie" class="button-movie">More</a>
                         </div>
                     </div>
                 </div>
                 <div class="movie-slider">
                     <?php 
-                        $tampil = $lst->movie();
+                        $tampil = $lst->tampilMovie();
                         while($data = $tampil->fetch_object()){
                     ?>
                     <div class="container-ongoing container-movie">
-                        <a href="#">
+                        <a href="?page=anime&anime=<?php echo $data->title_list ?>">
                             <img src="admin/assets/img/cover/<?php echo $data->cover_image ?>" alt="cover" class="image-ongoing">
                             <div class="rating"><i class="fas fa-star"></i> <?php echo $data->rate ?></div>
                             <div class="middle-ongoing middle-movie">
@@ -213,7 +213,7 @@
                         $tampil = $grn->tampil();
                         while($data = $tampil->fetch_object()){
                     ?>
-                    <li><a href="#"><i class="fas fa-caret-right"></i> &nbsp; <?php echo $data->title_genre ?> <span class="right count"></span></a></li>
+                    <li><a href="?page=list&act=genre&genre=<?php echo $data->title_genre ?>"><i class="fas fa-caret-right"></i> &nbsp; <?php echo $data->title_genre ?> <span class="right count"></span></a></li>
                     <?php } ?>
                 </ul>
             </div>
