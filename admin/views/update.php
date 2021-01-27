@@ -49,7 +49,7 @@
             <th scope="row"><?php echo $no++ ?></th>
             <td><?php echo $data->title_list; ?></td>
             <td><?php echo $data->episode; ?></td>
-            <td><?php echo $data->preview; ?></td>
+            <td><img src="assets/img/preview/<?php echo $data->preview; ?>" width="80px" alt="Previous Image"></td>
             <td><?php echo $data->embed_link; ?></td>
             <td><center><a id="edit_upd" data-id="<?php echo $data->no; ?>" data-title="<?php echo $data->title_list; ?>"
             data-episode="<?php echo $data->episode; ?>" data-prv="<?php echo $data->preview; ?>" data-embed="<?php echo $data->embed_link; ?>" data-bs-toggle="modal" data-bs-target="#edit">
@@ -76,7 +76,7 @@
                     <h5 class="modal-title" id="tambahModalLabel">Tambah Data Genre</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <form action="" method="post">
+                  <form method="post" enctype="multipart/form-data">
                     <div class="modal-body" >
                       <div class="form-group">
                         <label for="title_list" class="control-label">Title</label>
@@ -119,7 +119,7 @@
                       $gambar = "prv-".round(microtime(true)).".".end($extensi);
                       $sumber = $_FILES['gambar']['tmp_name'];
                       $upload = move_uploaded_file($sumber, "assets/img/preview/".$gambar);
-                      
+
                       $embed = $connection->conn->real_escape_string($_POST['emb']);
 
                       if($upload){
@@ -197,7 +197,6 @@
            $("#modal-edit #eps").val(episode);
            $("#modal-edit #emb").val(embed);
            $("#modal-edit #pict").attr("src", "assets/img/preview/"+preview);
-
          })
 
          $(document).ready(function(e){

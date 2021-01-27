@@ -7,7 +7,7 @@
     $connection = new Database($host, $user, $pass, $database);
     $upd = new Update($connection);
 
-    $id_upd = $_POST['id_upd'];
+    $id = $_POST['id_upd'];
     $title = $connection->conn->real_escape_string($_POST['title_list']);
     $episode = $connection->conn->real_escape_string($_POST['eps']);
     $embed = $connection->conn->real_escape_string($_POST['emb']);
@@ -17,17 +17,17 @@
     $gbr_prv = "prv-".round(microtime(true)).".".end($extensi);
     $sumber = $_FILES['gbr_prv']['tmp_name'];
 
-    if($pict == ""){
-      $upd->edit("UPDATE tb_update SET title_list = '$title', episode = '$episode', embed_link = '$embed' WHERE no = '$id_upd'");
+    if($pict == ''){
+      $upd->edit("UPDATE tb_update SET title_list = '$title', episode = '$episode', embed_link = '$embed' WHERE no = '$id'");
       echo "<script>window.location='?page=update';</script>";
     }else{
-      $gbr_awal = $upd->tampil($id_upd)->fetch_object()->preview;
+      $gbr_awal = $upd->tampil($id)->fetch_object()->preview;
       unlink("../assets/img/preview/".$gbr_awal);
   
-      $upload = move_uploaded_file($sumber, "../assets/img/preview/".$gbr_cvr);
+      $upload = move_uploaded_file($sumber, "../assets/img/preview/".$gbr_prv);
   
       if($upload){
-          $upd->edit("UPDATE tb_update SET title_list = '$title', episode = '$episode', preview = '$gbr_prv', embed_link = '$embed' WHERE no = '$id_upd'");
+          $upd->edit("UPDATE tb_update SET title_list = '$title', episode = '$episode', embed_link = '$embed,  preview = '$gbr_prv' WHERE no = '$id'");
         echo "<script>
               alert('Edit Success');
               window.location='?page=update';
