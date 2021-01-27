@@ -8,7 +8,7 @@
     $upd = new Update($connection);
 
     $id = $_POST['id_upd'];
-    $title = $connection->conn->real_escape_string($_POST['title_list']);
+    $title_l = $connection->conn->real_escape_string($_POST['title_list']);
     $episode = $connection->conn->real_escape_string($_POST['eps']);
     $embed = $connection->conn->real_escape_string($_POST['emb']);
 
@@ -18,7 +18,7 @@
     $sumber = $_FILES['gbr_prv']['tmp_name'];
 
     if($pict == ''){
-      $upd->edit("UPDATE tb_update SET title_list = '$title', episode = '$episode', embed_link = '$embed' WHERE no = '$id'");
+      $upd->edit("UPDATE tb_update SET title_list = '$title', episode = '$episode', embed_link = '$embed' WHERE tb_update . no = '$id'");
       echo "<script>window.location='?page=update';</script>";
     }else{
       $gbr_awal = $upd->tampil($id)->fetch_object()->preview;
@@ -27,11 +27,12 @@
       $upload = move_uploaded_file($sumber, "../assets/img/preview/".$gbr_prv);
   
       if($upload){
-          $upd->edit("UPDATE tb_update SET title_list = '$title', episode = '$episode', embed_link = '$embed,  preview = '$gbr_prv' WHERE no = '$id'");
+          $upd->edit("UPDATE tb_update SET episode = '$episode', title_list = '$title_l', preview = '$gbr_prv', embed_link = '$embed' WHERE tb_update . no = '$id'");
         echo "<script>
               alert('Edit Success');
               window.location='?page=update';
               </script>";
+        
       } else {
           echo "<script>
                 alert('Upload Gambar Gagal');

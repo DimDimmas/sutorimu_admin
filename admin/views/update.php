@@ -49,7 +49,7 @@
             <th scope="row"><?php echo $no++ ?></th>
             <td><?php echo $data->title_list; ?></td>
             <td><?php echo $data->episode; ?></td>
-            <td><img src="assets/img/preview/<?php echo $data->preview; ?>" width="80px" alt="Previous Image"></td>
+            <td><img src="assets/img/preview/<?php echo $data->preview ?>" width="80px" alt="Previous Image"></td>
             <td><?php echo $data->embed_link; ?></td>
             <td><center><a id="edit_upd" data-id="<?php echo $data->no; ?>" data-title="<?php echo $data->title_list; ?>"
             data-episode="<?php echo $data->episode; ?>" data-prv="<?php echo $data->preview; ?>" data-embed="<?php echo $data->embed_link; ?>" data-bs-toggle="modal" data-bs-target="#edit">
@@ -102,7 +102,7 @@
                       </div>
                       <div class="form-group">
                         <label for="eps" class="control-label">Link Video</label>
-                        <input type="text" name="emb" id="emb" class="form-control" required>
+                        <input type="text" name="emb" id="emb" class="form-control">
                       </div>
                     </div>
                     <div class="modal-footer">
@@ -124,8 +124,6 @@
 
                       if($upload){
                         $upd->tambah($title, $episode, $gambar, $embed);
-                        echo "<script>alert('Data Berhasil Ditambahkan');</script>
-                        <script>window.location='?page=update';</script>";
                       }else{
                         echo "<script>alert('Upload Gambar Gagal')</script>
                         <script>window.location='?page=update';</script>";
@@ -173,7 +171,7 @@
                       </div>
                       <div class="form-group">
                         <label for="eps" class="control-label">Link Video</label>
-                        <input type="text" name="emb" id="emb" class="form-control" required>
+                        <input type="text" name="emb" id="emb" class="form-control">
                       </div>
                     </div>
                     <div class="modal-footer">
