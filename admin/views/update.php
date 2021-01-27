@@ -98,7 +98,7 @@
                       </div>
                       <div class="form-group">
                         <label for="">Preview Image</label>
-                        <input type="file" name="gbr_prv" class="form-control" id="" required>
+                        <input type="file" name="gambar" class="form-control" id="">
                       </div>
                       <div class="form-group">
                         <label for="eps" class="control-label">Link Video</label>
@@ -114,14 +114,16 @@
                     if(@$_POST['tambah']){
                       $title = $connection->conn->real_escape_string($_POST['title_list']);
                       $episode = $connection->conn->real_escape_string($_POST['eps']);
+
+                      $extensi = explode(".", $_FILES['gambar']['name']);
+                      $gambar = "prv-".round(microtime(true)).".".end($extensi);
+                      $sumber = $_FILES['gambar']['tmp_name'];
+                      $upload = move_uploaded_file($sumber, "assets/img/preview/".$gambar);
+                      
                       $embed = $connection->conn->real_escape_string($_POST['emb']);
 
-                      $extensi = explode(".", $_FILES['gbr_prv']['name']);
-                      $gbr_prv = "prv-".round(microtime(true)).".".end($extensi);
-                      $sumber = $_FILES['gbr_prv']['tmp_name'];
-                      $upload = move_uploaded_file($sumber, "assets/img/preview/".$gbr_prv);
                       if($upload){
-                        $upd->tambah($title, $episode, $gbr_prv, $embed);
+                        $upd->tambah($title, $episode, $gambar, $embed);
                         echo "<script>alert('Data Berhasil Ditambahkan');</script>
                         <script>window.location='?page=update';</script>";
                       }else{

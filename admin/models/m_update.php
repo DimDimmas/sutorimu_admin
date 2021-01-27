@@ -18,9 +18,9 @@
             return $query;
         }
 
-        public function tambah($title, $episode, $gbr_prv, $embed){
+        public function tambah($title, $episode, $gambar, $embed){
             $db = $this->mysqli->conn;
-            $db->query("INSERT INTO tb_update values('','$episode','$title','$gbr_prv','$embed')") or die($db->error);
+            $db->query("INSERT INTO tb_update(no, episode, title_list, preview, embed_link) values('','$episode','$title','$gambar','$embed')") or die($db->error);
         }
 
         public function edit($sql){
